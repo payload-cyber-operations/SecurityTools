@@ -5,6 +5,8 @@
     the capture of the ports early stored
     in a simple file when you executed the 
     scanning with nmap and creating a -oG file
+
+    :author: Arturo Negreiros aka H0n3yL04d
 """
 
 import os
