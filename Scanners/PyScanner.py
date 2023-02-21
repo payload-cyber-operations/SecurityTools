@@ -7,7 +7,7 @@ import os
 from IPy import IP
 
 
-class Socket_connection:
+class SocketConnection:
 
     def __init__(self, host_, port_):
         self.sock = None
@@ -144,7 +144,7 @@ def init_process():
                 print(host)
                 print(port)
                 if port is not None and host is not None:
-                    sock = Socket_connection(host, port)
+                    sock = SocketConnection(host, port)
                     sock.socket_create()
                     sock.socket_bind()
                     sock.socket_accept_connection()
