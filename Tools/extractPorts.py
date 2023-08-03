@@ -24,13 +24,15 @@ def main():
         ports = [re.search(r'\d{1,5}', x).group() for x in allport]
         ports = ",".join(ports)
         subprocess.Popen(f"echo {ports} | tr -d '\n' | xclip -sel clip", stdout=subprocess.PIPE, shell=True)
-        os.remove(sys.argv[1])
         print(f"\n[*] Ports in the clipboard {ports}")
         print(f"\n[*] Deleting  file {sys.argv[1]}")
         exit(0)
 
-    except Exception as e:
-        print(f"\n[x] Error by {str(e)}")
+    except Exception:
+        print("""
+        \n\n\t [*] python3 extractPorts.py <grepable file>\n\n
+              """)
+        sys.exit(1)
     except KeyboardInterrupt:
         print("\n[!] Exiting...")
 
